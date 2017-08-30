@@ -60,6 +60,7 @@ $(document).ready(function(){  // may be extra ')'
 			success: function(){
 				$li.fadeOut(300, function(){
 					$(this).remove();
+				
 				});
 			}
 		});
