@@ -48,28 +48,20 @@ $(document).ready(function(){  // may be extra ')'
 		});		// this should close #.ajax POST
 				// this should close #add-friend
 	});
+
+	//.delegate allows you to remove items that were loaded by other students
+	$friends.delegate('.remove', 'click', function(){
+
+		var $li = $(this).closest('li');
+		//AJAX DELETE Function - click the .remove class button and the id identities what to delete
+		$.ajax({
+			type: 'DELETE',
+			url: 'http://rest.learncode.academy/api/learncode/friends/' + $(this).attr('id'),
+			success: function(){
+				$li.fadeOut(300, function(){
+					$(this).remove();
+				});
+			}
+		});
+	});
 });
-
-
-
-
-	// $('#add-friend').on('click',function(){
-
-	// 	var friend = {
-	// 		name: $name.val(),
-	// 		age: $age.val()
-	// 	};
-
-
-	// 	$.ajax({
-	// 		type: 'POST',
-	// 		url: 'http://rest.learncode.academy/api/learncode/friends',
-	// 		data: friend,
-	// 		success: function(newFriend){
-	// 			addFriend(newFriend);
-	// 		},
-	// 		error: function(){
-	// 			alert('err saving order');
-	// 		}
-	// 	});		// this should close #.ajax POST
-	//			// this should close #add-friend
